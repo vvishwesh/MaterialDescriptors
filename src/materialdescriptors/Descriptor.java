@@ -7,6 +7,7 @@ import java.util.HashMap;
  *
  * @author Vishwesh Venkatraman
  */
+
 public class Descriptor
 {
     private String compound;
@@ -81,3 +82,4 @@ public class Descriptor
     
 //------------------------------------------------------------------------------                
 }
+
