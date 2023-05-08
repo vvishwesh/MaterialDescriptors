@@ -54,7 +54,7 @@ public class IO
         }
         finally
         {
-            iterator.close();
+            LineIterator.closeQuietly(iterator);
         }
 
         return fdata;
@@ -212,3 +212,4 @@ public class IO
 //------------------------------------------------------------------------------
 
 }
+
