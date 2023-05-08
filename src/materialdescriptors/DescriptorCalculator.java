@@ -243,20 +243,6 @@ public class DescriptorCalculator
         // the average volume of atom of the alloy
         descVal.put("avgVolAlloy", sum/sum2);
     }
-    
-//------------------------------------------------------------------------------
-
-    private static void calculateCrossCorrelations(HashMap<String, Double> elemComp,
-        HashMap<String, Double> descVal)
-    {
-        double[] pvals = new double[elemComp.size()];
-        double[] comp = new double[elemComp.size()];
-        for (Map.Entry<String, Double> entry : elemComp.entrySet())
-        {
-            //comp[i] = entry.getValue();
-        }
-    }
-
 
 //------------------------------------------------------------------------------
 
@@ -395,7 +381,7 @@ public class DescriptorCalculator
      * @param prefix
      */
 
-    private static void getValanceOrbitalOccupationAttributes(HashMap<String, Double> elemComp,
+    private static void getValenceOrbitalOccupationAttributes(HashMap<String, Double> elemComp,
         HashMap<String, Double> descVal, String proptype, String prefix)
     {
         double[] pvals = new double[elemComp.size()];
@@ -655,6 +641,9 @@ public class DescriptorCalculator
                 case "ELECTROPHILICITY":
                     pvals[i] = Utils.getValue(entry.getKey(), "ELECTROPHILICITY");
                     break;
+                case "C6DP":
+                    pvals[i] = Utils.getValue(entry.getKey(), "C6DP");
+                    break;
                 // atomic number
                 case "ATMNUM":
                     pvals[i] = Utils.getValue(entry.getKey(), "ATMNUM");
@@ -668,6 +657,12 @@ public class DescriptorCalculator
                     break;
                 case "COVALENT_RADIUS":
                     pvals[i] = Utils.getValue(entry.getKey(), "COVALENT_RADIUS");
+                    break;
+                case "COVALENT_RADIUS_PYYKKO":
+                    pvals[i] = Utils.getValue(entry.getKey(), "COVALENT_RADIUS_PYYKKO");
+                    break;
+                case "COVALENT_RADIUS_CORDERO":
+                    pvals[i] = Utils.getValue(entry.getKey(), "COVALENT_RADIUS_CORDERO");
                     break;
                 case "IONIC_RADIUS":
                     pvals[i] = Utils.getValue(entry.getKey(), "IONIC_RADIUS");
@@ -685,8 +680,17 @@ public class DescriptorCalculator
                 case "MENDEL":
                     pvals[i] = Utils.getValue(entry.getKey(), "MENDEL");
                     break;
+                case "PETTIFOR":
+                    pvals[i] = Utils.getValue(entry.getKey(), "PETTIFOR");
+                    break;
+                case "GLAWE":
+                    pvals[i] = Utils.getValue(entry.getKey(), "GLAWE");
+                    break;
                 case "DIPOLE":
                     pvals[i] = Utils.getValue(entry.getKey(), "DIPOLE");
+                    break;
+                case "POLARIZABILITY":
+                    pvals[i] = Utils.getValue(entry.getKey(), "POLARIZABILITY");
                     break;
                 case "COHESIVEENG":
                     pvals[i] = Utils.getValue(entry.getKey(), "COHESIVEENG");
@@ -699,6 +703,9 @@ public class DescriptorCalculator
                     break;
                 case "HTFUSION":
                     pvals[i] = Utils.getValue(entry.getKey(), "HTFUSION");
+                    break;
+                case "HOF":
+                    pvals[i] = Utils.getValue(entry.getKey(), "HOF");
                     break;
                 case "SPECIFIC_HEAT":
                     pvals[i] = Utils.getValue(entry.getKey(), "SPECIFIC_HEAT");
@@ -817,43 +824,6 @@ public class DescriptorCalculator
 
             switch (proptype)
             {
-                case "ATMWT":
-                    pvals[i] = Utils.getValue(entry.getKey(), "ATMWT");
-                    break;
-                case "SGN":
-                    pvals[i] = Utils.getValue(entry.getKey(), "SGN");
-                    break;
-                case "GROUP":
-                    pvals[i] = Utils.getValue(entry.getKey(), "GROUP");
-                    break;
-                case "PERIOD":
-                    pvals[i] = Utils.getValue(entry.getKey(), "PERIOD");
-                    break;
-                case "LATTICE_CONSTANT":
-                    pvals[i] = Utils.getValue(entry.getKey(), "LATTICE_CONSTANT");
-                    break;
-                case "MP":
-                    pvals[i] = Utils.getValue(entry.getKey(), "MP");
-                    break;
-                case "BP":
-                    pvals[i] = Utils.getValue(entry.getKey(), "BP");
-                    break;
-                case "LQUANT":
-                    pvals[i] = Utils.getValue(entry.getKey(), "LQUANT");
-                    break;
-                case "ATMNUM":
-                    pvals[i] = Utils.getValue(entry.getKey(), "ATMNUM");
-                    break;
-                // atomic radius
-                case "ATMRAD":
-                    pvals[i] = Utils.getValue(entry.getKey(), "ATMRAD");
-                    break;
-                case "RADIUS_RAHM":
-                    pvals[i] = Utils.getValue(entry.getKey(), "RADIUS_RAHM");
-                    break;
-                case "ATOMENTHALPY":
-                    pvals[i] = Utils.getValue(entry.getKey(), "ATOMENTHALPY");
-                    break;
                 // electronegativity
                 case "EN_PAULING":
                     pvals[i] = Utils.getValue(entry.getKey(), "EN_PAULING");
@@ -894,6 +864,157 @@ public class DescriptorCalculator
                 case "ELECTROPHILICITY":
                     pvals[i] = Utils.getValue(entry.getKey(), "ELECTROPHILICITY");
                     break;
+                case "C6DP":
+                    pvals[i] = Utils.getValue(entry.getKey(), "C6DP");
+                    break;
+                // atomic number
+                case "ATMNUM":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ATMNUM");
+                    break;
+                // atomic radius
+                case "ATMRAD":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ATMRAD");
+                    break;
+                case "ZUNGER":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ZUNGER");
+                    break;
+                case "COVALENT_RADIUS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "COVALENT_RADIUS");
+                    break;
+                case "COVALENT_RADIUS_PYYKKO":
+                    pvals[i] = Utils.getValue(entry.getKey(), "COVALENT_RADIUS_PYYKKO");
+                    break;
+                case "COVALENT_RADIUS_CORDERO":
+                    pvals[i] = Utils.getValue(entry.getKey(), "COVALENT_RADIUS_CORDERO");
+                    break;
+                case "IONIC_RADIUS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "IONIC_RADIUS");
+                    break;
+                case "CRYSTAL_RADIUS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "CRYSTAL_RADIUS");
+                    break;
+                case "RADIUS_RAHM":
+                    pvals[i] = Utils.getValue(entry.getKey(), "RADIUS_RAHM");
+                    break;
+                // atomic weight
+                case "ATMWT":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ATMWT");
+                    break;
+                case "MENDEL":
+                    pvals[i] = Utils.getValue(entry.getKey(), "MENDEL");
+                    break;
+                case "PETTIFOR":
+                    pvals[i] = Utils.getValue(entry.getKey(), "PETTIFOR");
+                    break;
+                case "GLAWE":
+                    pvals[i] = Utils.getValue(entry.getKey(), "GLAWE");
+                    break;
+                case "DIPOLE":
+                    pvals[i] = Utils.getValue(entry.getKey(), "DIPOLE");
+                    break;
+                case "POLARIZABILITY":
+                    pvals[i] = Utils.getValue(entry.getKey(), "POLARIZABILITY");
+                    break;
+                case "COHESIVEENG":
+                    pvals[i] = Utils.getValue(entry.getKey(), "COHESIVEENG");
+                    break;
+                case "HTVAP":
+                    pvals[i] = Utils.getValue(entry.getKey(), "HTVAP");
+                    break;
+                case "ATOMENTHALPY":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ATOMENTHALPY");
+                    break;
+                case "HTFUSION":
+                    pvals[i] = Utils.getValue(entry.getKey(), "HTFUSION");
+                    break;
+                case "HOF":
+                    pvals[i] = Utils.getValue(entry.getKey(), "HOF");
+                    break;
+                case "SPECIFIC_HEAT":
+                    pvals[i] = Utils.getValue(entry.getKey(), "SPECIFIC_HEAT");
+                    break;
+                case "ELECTRON_DENSITY":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ELECTRON_DENSITY");
+                    break;
+                case "ZCRITICAL":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ZCRITICAL");
+                    break;
+                case "ELAFFINITY":
+                    pvals[i] = Utils.getValue(entry.getKey(), "ELAFFINITY");
+                    break;
+                case "MAGNETIC_MOMENT":
+                    pvals[i] = Utils.getValue(entry.getKey(), "MAGNETIC_MOMENT");
+                    break;
+                case "IONIZATION_ENERGY":
+                    pvals[i] = Utils.getValue(entry.getKey(), "IONIZATION_ENERGY");
+                    break;
+                case "SGN":
+                    pvals[i] = Utils.getValue(entry.getKey(), "SGN");
+                    break;
+                case "WORK_FUNCTION":
+                    pvals[i] = Utils.getValue(entry.getKey(), "WORK_FUNCTION");
+                    break;
+                case "THCOND":
+                    pvals[i] = Utils.getValue(entry.getKey(), "THCOND");
+                    break;
+                case "MP":
+                    pvals[i] = Utils.getValue(entry.getKey(), "MP");
+                    break;
+                case "BP":
+                    pvals[i] = Utils.getValue(entry.getKey(), "BP");
+                    break;
+                // valence/orbital based
+                case "LQUANT":
+                    pvals[i] = Utils.getValue(entry.getKey(), "LQUANT");
+                    break;
+                case "TOTAL_VALENCE_ELECTRONS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "TOTAL_VALENCE_ELECTRONS");
+                    break;
+                case "NUM_S_UNFILLED_VALENCE_ELECTRONS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "NUM_S_UNFILLED_VALENCE_ELECTRONS");
+                    break;
+                case "NUM_F_UNFILLED_VALENCE_ELECTRONS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "NUM_F_UNFILLED_VALENCE_ELECTRONS");
+                    break;
+                case "NUM_P_UNFILLED_VALENCE_ELECTRONS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "NUM_P_UNFILLED_VALENCE_ELECTRONS");
+                    break;
+                case "NUM_D_UNFILLED_VALENCE_ELECTRONS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "NUM_D_UNFILLED_VALENCE_ELECTRONS");
+                    break;
+                case "SORBITAL_RAD":
+                    pvals[i] = Utils.getValue(entry.getKey(), "SORBITAL_RAD");
+                    break;
+                case "PORBITAL_RAD":
+                    pvals[i] = Utils.getValue(entry.getKey(), "PORBITAL_RAD");
+                    break;
+                case "DORBITAL_RAD":
+                    pvals[i] = Utils.getValue(entry.getKey(), "DORBITAL_RAD");
+                    break;
+                case "SORB":
+                    pvals[i] = Utils.getValue(entry.getKey(), "SORB");
+                    break;
+                case "PORB":
+                    pvals[i] = Utils.getValue(entry.getKey(), "PORB");
+                    break;
+                case "DORB":
+                    pvals[i] = Utils.getValue(entry.getKey(), "DORB");
+                    break;
+                case "FORB":
+                    pvals[i] = Utils.getValue(entry.getKey(), "FORB");
+                    break;
+                case "TOTAL_UNFILLED_ELECTRONS":
+                    pvals[i] = Utils.getValue(entry.getKey(), "TOTAL_UNFILLED_ELECTRONS");
+                    break;
+                case "LATTICE_CONSTANT":
+                    pvals[i] = Utils.getValue(entry.getKey(), "LATTICE_CONSTANT");
+                    break;
+                case "GROUP":
+                    pvals[i] = Utils.getValue(entry.getKey(), "GROUP");
+                    break;
+                case "PERIOD":
+                    pvals[i] = Utils.getValue(entry.getKey(), "PERIOD");
+                    break;
                 default:
                     break;
             }
@@ -918,24 +1039,18 @@ public class DescriptorCalculator
 
 //------------------------------------------------------------------------------
 
-    public static void computeDescriptors(HashMap<String, Double> elemComp,
+    public static void computeStandardSet(HashMap<String, Double> elemComp,
         HashMap<String, Double> descVal)
     {
         getAverageVolumeAA(elemComp, descVal);
         getDensityMix(elemComp, descVal);
-        getElementalPropertyStatistics(elemComp, descVal, "ATMNUM", "atmnum");
+        getStochiometricAttributes(elemComp, descVal);
+        getConfigurationalEntropy(elemComp, descVal);
+        getEffectiveMeltingTemperature(elemComp, descVal);
+        getAtomicSizeDifference(elemComp, descVal);
+
+
         getElementalPropertyStatistics(elemComp, descVal, "EN_RAHM", "eneg_rahm");
-        getElementalPropertyStatistics(elemComp, descVal, "ATMWT", "atmwt");
-        getElementalPropertyStatistics(elemComp, descVal, "PERIOD", "period");
-        getElementalPropertyStatistics(elemComp, descVal, "LATTICE_CONSTANT", "latconst");
-        getElementalPropertyStatistics(elemComp, descVal, "ATOMENTHALPY", "enthalpyAtomization");
-        getElementalPropertyStatistics(elemComp, descVal, "HTFUSION", "htfusion");
-        getElementalPropertyStatistics(elemComp, descVal, "HTVAP", "htevap");
-        getElementalPropertyStatistics(elemComp, descVal, "MENDEL", "mendeleevnum");
-        getElementalPropertyStatistics(elemComp, descVal, "IONIZATION_ENERGY", "ioneng");
-        getElementalPropertyStatistics(elemComp, descVal, "RADIUS_RAHM", "rahmrad");
-        getElementalPropertyStatistics(elemComp, descVal, "LQUANT", "lquant");
-        getElementalPropertyStatistics(elemComp, descVal, "SGN", "sgn");
         getElementalPropertyStatistics(elemComp, descVal, "NUM_S_UNFILLED_VALENCE_ELECTRONS", "NsUnfValence");
         getElementalPropertyStatistics(elemComp, descVal, "NUM_P_UNFILLED_VALENCE_ELECTRONS", "NpUnfValence");
         getElementalPropertyStatistics(elemComp, descVal, "NUM_F_UNFILLED_VALENCE_ELECTRONS", "NfUnfValence");
@@ -944,16 +1059,45 @@ public class DescriptorCalculator
         getElementalPropertyStatistics(elemComp, descVal, "PORB", "NpValence");
         getElementalPropertyStatistics(elemComp, descVal, "FORB", "NfValence");
         getElementalPropertyStatistics(elemComp, descVal, "DORB", "NdValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "NUM_S_UNFILLED_VALENCE_ELECTRONS", "NsUnfValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "NUM_P_UNFILLED_VALENCE_ELECTRONS", "NpUnfValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "NUM_F_UNFILLED_VALENCE_ELECTRONS", "NfUnfValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "NUM_D_UNFILLED_VALENCE_ELECTRONS", "NdUnfValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "SORB", "NsValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "PORB", "NpValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "FORB", "NfValence");
-        getValanceOrbitalOccupationAttributes(elemComp, descVal, "DORB", "NdValence");
-    }
 
+
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "NUM_S_UNFILLED_VALENCE_ELECTRONS", "NsUnfValence");
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "NUM_P_UNFILLED_VALENCE_ELECTRONS", "NpUnfValence");
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "NUM_F_UNFILLED_VALENCE_ELECTRONS", "NfUnfValence");
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "NUM_D_UNFILLED_VALENCE_ELECTRONS", "NdUnfValence");
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "SORB", "NsValence");
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "PORB", "NpValence");
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "FORB", "NfValence");
+        getValenceOrbitalOccupationAttributes(elemComp, descVal, "DORB", "NdValence");
+
+        getElementalPropertyStatistics(elemComp, descVal, "ATMNUM", "atmnum");
+        getElementalPropertyStatistics(elemComp, descVal, "ATMWT", "atmwt");
+        getElementalPropertyStatistics(elemComp, descVal, "RADIUS_RAHM", "rahmrad");
+        getElementalPropertyStatistics(elemComp, descVal, "LQUANT", "lquant");
+        getElementalPropertyStatistics(elemComp, descVal, "ZUNGER", "zungerad");
+        getElementalPropertyStatistics(elemComp, descVal, "LATTICE_CONSTANT", "latconst");
+        getElementalPropertyStatistics(elemComp, descVal, "MENDEL", "mendeleevnum");
+        getElementalPropertyStatistics(elemComp, descVal, "DIPOLE", "dipole");
+        getElementalPropertyStatistics(elemComp, descVal, "IONIZATION_ENERGY", "ioneng");
+        getElementalPropertyStatistics(elemComp, descVal, "COHESIVEENG", "cohesiveng");
+        getElementalPropertyStatistics(elemComp, descVal, "ELAFFINITY", "elaff");
+        getElementalPropertyStatistics(elemComp, descVal, "ATOMENTHALPY", "enthalpyAtomization");
+        getElementalPropertyStatistics(elemComp, descVal, "MP", "mp");
+        getElementalPropertyStatistics(elemComp, descVal, "BP", "bp");
+        getElementalPropertyStatistics(elemComp, descVal, "HTFUSION", "htfusion");
+        getElementalPropertyStatistics(elemComp, descVal, "HTVAP", "htevap");
+        getElementalPropertyStatistics(elemComp, descVal, "PERIOD", "period");
+        getElementalPropertyStatistics(elemComp, descVal, "WORK_FUNCTION", "workfn");
+        getElementalPropertyStatistics(elemComp, descVal, "ELECTRON_DENSITY", "eden");
+        getElementalPropertyStatistics(elemComp, descVal, "SPECIFIC_HEAT", "spheat");
+        getElementalPropertyStatistics(elemComp, descVal, "SGN", "sgn");
+        getElementalPropertyStatistics(elemComp, descVal, "ZCRITICAL", "critnuccharge");
+        getElementalPropertyStatistics(elemComp, descVal, "TOTAL_VALENCE_ELECTRONS", "totvalelec");
+        getElementalPropertyStatistics(elemComp, descVal, "TOTAL_UNFILLED_ELECTRONS", "totunfilledelec");
+        getElementalPropertyStatistics(elemComp, descVal, "DORBITAL_RAD", "rad_d_orb");
+        getElementalPropertyStatistics(elemComp, descVal, "PORBITAL_RAD", "rad_p_orb");
+        getElementalPropertyStatistics(elemComp, descVal, "SORBITAL_RAD", "rad_s_orb");
+    }
 
 //------------------------------------------------------------------------------
 
