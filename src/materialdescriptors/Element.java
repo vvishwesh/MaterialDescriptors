@@ -11,7 +11,7 @@ public class Element
     private double atomicWeight;
     private double VEC; // valence electron concentration
     private double atomicRadius;
-    private double vdwRadius;    
+    private double vdwRadius;
     private double MP;
     private double BP;
     private double thermalConductivity;
@@ -34,8 +34,16 @@ public class Element
     private int spaceGroupNumber;
     private double specificHeat;
     
+    private double GSBandgap;
+    private double GSenergy_pa;
+    private double GSestBCClatcnt;
+    private double GSestFCClatcnt; 
+    private double GSvolume_pa; 
+    private double GSmagmom;
+    private double ICSDVolume;
+
     private double radiusZunger;
-    
+
     private double atomicVolume;
     private double covalent_radius;
     private double bulkModulus;
@@ -71,27 +79,39 @@ public class Element
     private double en_Tandon;
     private double latticeConstant;
     private double atomicRadiusRahm;
-    
 
-    public Element(String _symbol, int _atomicNumber, double _atomicWeight, double _atomicRadius, 
+    private double polarizability;
+    private double covalent_radius_cordero;
+    private double covalent_radius_pyykko;
+    private double heat_of_formation;
+    private double c6_gb;
+    private double pettifor_number;
+    private double glawe_number;
+
+
+    public Element(String _symbol, int _atomicNumber, double _atomicWeight, double _atomicRadius,
         int _mendeleevNumber, double _vdwRadius, double _electronegativityPauling, int _LQuantumNumber,
         int _sOrbital, int _pOrbital, int _dOrbital, int _fOrbital,
         double _ionizationEnergy, double _electronAffinity, double _dipolePolarizability, double _heatOfFusion,
         double _heatOfVaporization, double _thermalConductivity, double _cohesiveEnergy,
-        double _VEC, double _MP, double _density, double _BP, double _group, double _period, 
-        int _SGN, double _electronegativityMB, double _zungerRadius, 
-        double _atomicVolume, double _covalent_radius, double _bulkModulus, 
-        double _electronDensity, double _magneticMoment, double _workFunction, 
-        int _num_f_unfilled_valence_electrons, int _num_p_unfilled_valence_electrons, 
+        double _VEC, double _MP, double _density, double _BP, double _group, double _period,
+        int _SGN, double _electronegativityMB, double _zungerRadius,
+        double _atomicVolume, double _covalent_radius, double _bulkModulus,
+        double _electronDensity, double _magneticMoment, double _workFunction,
+        int _num_f_unfilled_valence_electrons, int _num_p_unfilled_valence_electrons,
         int _num_s_unfilled_valence_electrons, int _num_d_unfilled_valence_electrons,
-        double _radius_d_orbital, double _radius_p_orbital, double _radius_s_orbital,         
-        int _total_unfilled_valence_electrons, int _total_valence_electrons, 
-        double _Nagle_EN, double _Gordy_EN, double _Rahm_EN, double _Allen_EN, 
-        double _Ghosh_EN, double _Mulliken_EN, double _AllredRochow_EN, 
+        double _radius_d_orbital, double _radius_p_orbital, double _radius_s_orbital,
+        int _total_unfilled_valence_electrons, int _total_valence_electrons,
+        double _Nagle_EN, double _Gordy_EN, double _Rahm_EN, double _Allen_EN,
+        double _Ghosh_EN, double _Mulliken_EN, double _AllredRochow_EN,
         double _CotrellSutton_EN, double _Boeyens_VS_EN, double _electrophilicity,
-        double _ionic_radius, double _crystal_radius, double _enthalpyAtomization, 
-        double _specificHeat, double _critical_nuclear_charge, double _Tandon_EN, 
-        double _LatticeConstant, double	_atomicRadius_Rahm)
+        double _ionic_radius, double _crystal_radius, double _enthalpyAtomization,
+        double _specificHeat, double _critical_nuclear_charge, double _Tandon_EN,
+        double _LatticeConstant, double	_atomicRadius_Rahm, double _polarizability,
+        double _covalent_radius_cordero, double _covalent_radius_pyykko,
+        double _heat_of_formation, double _c6_gb, double _pettifor_number,
+        double _glawe_number, double _GSBandgap, double _GSenergy_pa, double _GSestBCClatcnt, 
+        double _GSestFCClatcnt, double _GSvolume_pa, double _GSmagmom, double _ICSDVolume)
     {
         symbol = _symbol;
         atomicNumber = _atomicNumber;
@@ -99,7 +119,7 @@ public class Element
         mendeleevNumber = _mendeleevNumber;
         atomicRadius = _atomicRadius;
         vdwRadius = _vdwRadius;
-        
+
         LQuantumNumber = _LQuantumNumber;
         sOrbitalElectronNumber = _sOrbital;
         pOrbitalElectronNumber = _pOrbital;
@@ -123,15 +143,15 @@ public class Element
         latticeConstant = _LatticeConstant;
         atomicRadiusRahm = _atomicRadius_Rahm;
         critical_nuclear_charge = _critical_nuclear_charge;
-        
-        
+
+
         radiusZunger = _zungerRadius;
         bulkModulus = _bulkModulus;
         atomicVolume = _atomicVolume;
         covalent_radius = _covalent_radius;
         ionicRadius = _ionic_radius;
         crystalRadius = _crystal_radius;
-        
+
         enthalpyAtomization = _enthalpyAtomization;
         electronDensity = _electronDensity;
         magneticMoment = _magneticMoment;
@@ -145,7 +165,7 @@ public class Element
         radius_s_orbital = _radius_s_orbital;
         total_unfilled_valence_electrons = _total_unfilled_valence_electrons;
         total_valence_electrons = _total_valence_electrons;
-        
+
         en_Ghosh = _Ghosh_EN;
         en_Mulliken = _Mulliken_EN;
         en_Nagle = _Nagle_EN;
@@ -159,6 +179,24 @@ public class Element
         en_MartynovBatsanov = _electronegativityMB;
         en_Pauling = _electronegativityPauling;
         en_Tandon = _Tandon_EN;
+
+
+        polarizability = _polarizability;
+        covalent_radius_cordero = _covalent_radius_cordero;
+        covalent_radius_pyykko = _covalent_radius_pyykko;
+        heat_of_formation = _heat_of_formation;
+        c6_gb = _c6_gb;
+        pettifor_number = _pettifor_number;
+        glawe_number = _glawe_number;
+        
+        GSBandgap = _GSBandgap;
+        GSenergy_pa = _GSenergy_pa;
+        GSestBCClatcnt = _GSestBCClatcnt;
+        GSestFCClatcnt = _GSestFCClatcnt; 
+        GSvolume_pa = _GSvolume_pa; 
+        GSmagmom = _GSmagmom;
+        ICSDVolume = _ICSDVolume;
+
     }
 
     public double getAtomicVolume()
@@ -210,7 +248,7 @@ public class Element
     {
         this.radiusZunger = radiusZunger;
     }
-    
+
     public String getSymbol()
     {
         return symbol;
@@ -543,8 +581,75 @@ public class Element
     {
         this.num_d_unfilled_valence_electrons = num_d_unfilled_valence_electrons;
     }
-    
-    
+
+    public double getPolarizability() 
+    {
+        return polarizability;
+    }
+
+    public void setPolarizability(double polarizability) 
+    {
+        this.polarizability = polarizability;
+    }
+
+    public double getCovalentRadiusCordero() 
+    {
+        return covalent_radius_cordero;
+    }
+
+    public void setCovalentRadiusCordero(double covalent_radius_cordero) 
+    {
+        this.covalent_radius_cordero = covalent_radius_cordero;
+    }
+
+    public double getCovalentRadiusPyykko() 
+    {
+        return covalent_radius_pyykko;
+    }
+
+    public void setCovalentRadiusPyykko(double covalent_radius_pyykko) 
+    {
+        this.covalent_radius_pyykko = covalent_radius_pyykko;
+    }
+
+    public double getHeatOfFormation() 
+    {
+        return heat_of_formation;
+    }
+
+    public void setHeatOfFormation(double heat_of_formation) 
+    {
+        this.heat_of_formation = heat_of_formation;
+    }
+
+    public double getC6GB() {
+        return c6_gb;
+    }
+
+    public void setC6GB(double c6_gb) 
+    {
+        this.c6_gb = c6_gb;
+    }
+
+    public double getPettiforNumber() 
+    {
+        return pettifor_number;
+    }
+
+    public void setPettiforNumber(double pettifor_number) 
+    {
+        this.pettifor_number = pettifor_number;
+    }
+
+    public double getGlaweNumber() 
+    {
+        return glawe_number;
+    }
+
+    public void setGlaweNumber(double glawe_number) 
+    {
+        this.glawe_number = glawe_number;
+    }
 
     public int getNum_s_unfilled_valence_electrons()
     {
@@ -552,7 +657,7 @@ public class Element
     }
 
     public void setNum_s_unfilled_valence_electrons(
-                                                    int num_s_unfilled_valence_electrons)
+        int num_s_unfilled_valence_electrons)
     {
         this.num_s_unfilled_valence_electrons = num_s_unfilled_valence_electrons;
     }
@@ -593,7 +698,7 @@ public class Element
     }
 
     public void setTotal_unfilled_valence_electrons(
-                                                    int total_unfilled_valence_electrons)
+        int total_unfilled_valence_electrons)
     {
         this.total_unfilled_valence_electrons = total_unfilled_valence_electrons;
     }
@@ -787,8 +892,77 @@ public class Element
     {
         this.atomicRadiusRahm = atomicRadiusRahm;
     }
-    
-    
-    
+
+    public double getGSBandgap() 
+    {
+        return GSBandgap;
+    }
+
+    public void setGSBandgap(double GSBandgap) 
+    {
+        this.GSBandgap = GSBandgap;
+    }
+
+    public double getGSenergy_pa() 
+    {
+        return GSenergy_pa;
+    }
+
+    public void setGSenergy_pa(double GSenergy_pa) 
+    {
+        this.GSenergy_pa = GSenergy_pa;
+    }
+
+    public double getGSestBCClatcnt() 
+    {
+        return GSestBCClatcnt;
+    }
+
+    public void setGSestBCClatcnt(double GSestBCClatcnt) 
+    {
+        this.GSestBCClatcnt = GSestBCClatcnt;
+    }
+
+    public double getGSestFCClatcnt() 
+    {
+        return GSestFCClatcnt;
+    }
+
+    public void setGSestFCClatcnt(double GSestFCClatcnt) 
+    {
+        this.GSestFCClatcnt = GSestFCClatcnt;
+    }
+
+    public double getGSvolume_pa() 
+    {
+        return GSvolume_pa;
+    }
+
+    public void setGSvolume_pa(double GSvolume_pa) 
+    {
+        this.GSvolume_pa = GSvolume_pa;
+    }
+
+    public double getGSmagmom() 
+    {
+        return GSmagmom;
+    }
+
+    public void setGSmagmom(double GSmagmom) 
+    {
+        this.GSmagmom = GSmagmom;
+    }
+
+    public double getICSDVolume() 
+    {
+        return ICSDVolume;
+    }
+
+    public void setICSDVolume(double ICSDVolume) 
+    {
+        this.ICSDVolume = ICSDVolume;
+    }
+
 }
+
 
